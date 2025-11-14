@@ -17,7 +17,7 @@ export const ExperienceSection: React.FC = () => {
       </Typography>
 
       <Grid container justifyContent="center">
-        <Grid xs={12} md={8}>
+        <Grid item xs={12} md={8} component="div">
           <Paper sx={styles.card}>
             <Typography variant="h5" sx={styles.position}>
               Internship — Software Developer
