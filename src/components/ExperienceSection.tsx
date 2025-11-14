@@ -17,7 +17,7 @@ export const ExperienceSection: React.FC = () => {
       </Typography>
 
       <Grid container justifyContent="center">
-        <Grid item xs={12} md={8}>
+        <Grid item component="div" xs={12} md={8}>
           <Paper sx={styles.card}>
             <Typography variant="h5" sx={styles.position}>
               Internship — Software Developer
@@ -43,7 +43,7 @@ export const ExperienceSection: React.FC = () => {
                 • Practiced standard code committing conventions, merge
                 requests, and version control using Git and GitLab.
               </Typography>
-              <Typography sx={styles.detailItem}>   
+              <Typography sx={styles.detailItem}>
                 • Developed projects using React.js, TypeScript, and Material
                 UI.
               </Typography>
