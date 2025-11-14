@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Paper, Grid } from "@mui/material";
+import { Box, Typography, Paper, Grid } from "@mui/material"; // standard Grid
 
 export const ExperienceSection: React.FC = () => {
   return (
@@ -16,8 +16,8 @@ export const ExperienceSection: React.FC = () => {
         Developer.
       </Typography>
 
-      <Grid container justifyContent="center">
-        <Grid item xs={12} md={8} component="div">
+      <Grid container justifyContent="center" spacing={2}>
+        <Grid xs={12} md={8}>
           <Paper sx={styles.card}>
             <Typography variant="h5" sx={styles.position}>
               Internship — Software Developer
