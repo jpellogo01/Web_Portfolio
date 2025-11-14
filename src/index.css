@@ -1,0 +1,8 @@
+/* Import Tailwind using the official Vite guide */
+@import "tailwindcss";
+
+/* Optional custom styles */
+body {
+  margin: 0;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
