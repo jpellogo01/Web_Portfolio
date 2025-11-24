@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import LinearProgress from "@mui/material/LinearProgress";
 
 const skills = [
   // Programming Languages
@@ -91,12 +90,6 @@ export const SkillsSection: React.FC = () => {
         {filteredSkills.map((skill, index) => (
           <Box key={index} sx={styles.skillCard}>
             <Typography sx={styles.skillName}>{skill.name}</Typography>
-            <LinearProgress
-              variant="determinate"
-              value={skill.level}
-              sx={styles.progressBar}
-            />
-            <Typography sx={styles.skillLevel}>{skill.level}%</Typography>
           </Box>
         ))}
       </Box>
