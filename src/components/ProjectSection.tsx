@@ -17,7 +17,7 @@ const projects = [
     description:
       "REST API built with Spring Boot for OTP generation, email delivery via Brevo, and verification. Backend-only demo.",
     image: project1Image,
-    tags: ["Spring Boot", "Java", " REST API", "Brevo"],
+    tags: ["Spring Boot", " REST API", "Brevo"],
     demoUrl: "#",
     githubUrl:
       "https://github.com/jpellogo01/OTP-Service-and-Verification/tree/master/site/src/main/java/com/youthwise/site",
