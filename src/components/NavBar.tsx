@@ -13,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 const navLinks = [
   { id: "home", label: "Home" },
   { id: "skills", label: "Skills" },
-  { id: "projects", label: "Work" },
+  { id: "projects", label: "Works" },
   { id: "experience", label: "Experience" },
   { id: "graphic-design", label: "Design" },
   { id: "contact", label: "Contact" },
