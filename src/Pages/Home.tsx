@@ -6,17 +6,19 @@ import { SkillsSection } from "../components/SkillsSection";
 import { ProjectsSection } from "../components/ProjectSection";
 import { ContactSection } from "../components/ContactSection";
 import { ExperienceSection } from "../components/ExperienceSection";
+import { GraphicDesignSection } from "../components/GraphicDesignSection";
 export const Home: React.FC = () => {
   return (
-    <Box>
-      {/* Display NavBar */}
+    <Box sx={{ overflow: "hidden" }}>
       <NavBar />
-      {/* Display Hero Section */}
-      <HeroSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <ExperienceSection />
-      <ContactSection />
+      <Box component="main">
+        <HeroSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <GraphicDesignSection />
+        <ExperienceSection />
+        <ContactSection />
+      </Box>
     </Box>
   );
 };

@@ -10,7 +10,14 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const navLinks = ["home", "skills", "projects", "experience", "contact"];
+const navLinks = [
+  { id: "home", label: "Home" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Work" },
+  { id: "experience", label: "Experience" },
+  { id: "graphic-design", label: "Design" },
+  { id: "contact", label: "Contact" },
+];
 
 const NavBar: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -27,23 +34,31 @@ const NavBar: React.FC = () => {
     <>
       <AppBar position="fixed" sx={styles.appBar} elevation={0}>
         <Toolbar sx={styles.toolbar}>
-          {/* Logo as text */}
-          <Box sx={styles.logo} onClick={() => handleNavClick("home")}>
+          <Box
+            component="button"
+            type="button"
+            aria-label="Go to home"
+            sx={styles.logo}
+            onClick={() => handleNavClick("home")}
+          >
             {"<"}It's me{" "}
             <Box component="span" sx={styles.logoHighlight}>
               JP!{">"}
             </Box>
           </Box>
 
-          {/* Desktop nav links */}
-          <Box sx={styles.navLinksContainer}>
+          <Box
+            component="nav"
+            aria-label="Primary navigation"
+            sx={styles.navLinksContainer}
+          >
             {navLinks.map((link) => (
               <Button
-                key={link}
+                key={link.id}
                 sx={styles.navButton}
-                onClick={() => handleNavClick(link)}
+                onClick={() => handleNavClick(link.id)}
               >
-                {link.charAt(0).toUpperCase() + link.slice(1)}
+                {link.label}
               </Button>
             ))}
           </Box>
@@ -65,13 +80,13 @@ const NavBar: React.FC = () => {
       <Drawer anchor="right" open={drawerOpen} onClose={toggleDrawer(false)}>
         <Box sx={styles.drawer} onClick={toggleDrawer(false)}>
           <List>
-            {navLinks.map((text) => (
-              <ListItem key={text} disablePadding>
+            {navLinks.map((link) => (
+              <ListItem key={link.id} disablePadding>
                 <ListItemButton
                   sx={styles.drawerListItem}
-                  onClick={() => handleNavClick(text)}
+                  onClick={() => handleNavClick(link.id)}
                 >
-                  {text.charAt(0).toUpperCase() + text.slice(1)}
+                  {link.label}
                 </ListItemButton>
               </ListItem>
             ))}
@@ -87,31 +102,43 @@ export default NavBar;
 const styles = {
   appBar: {
     bgcolor: "#122620",
+    borderBottom: "1px solid rgba(214, 173, 96, 0.22)",
+    backdropFilter: "blur(14px)",
+    zIndex: 1100,
   },
   toolbar: {
     display: "flex",
     justifyContent: "space-between",
+    minHeight: { xs: 64, md: 76 },
+    px: { xs: 2, sm: 4, md: 7 },
   },
   logo: {
-    fontSize: "1.5rem",
+    fontSize: { xs: "1.2rem", sm: "1.4rem" },
     fontWeight: "bold",
     color: "#fff",
     cursor: "pointer",
     userSelect: "none",
+    border: 0,
+    background: "transparent",
+    padding: 0,
+    fontFamily: "inherit",
   },
   logoHighlight: {
     color: "#bbbbbb", // light gray
   },
   navLinksContainer: {
     display: { xs: "none", md: "flex" },
-    gap: 3,
+    gap: { md: 1, lg: 2 },
   },
   navButton: {
     color: "#F4EBD0",
     fontWeight: "bold",
-    transition: "all 0.3s ease", // smooth animation
+    minHeight: 44,
+    px: { md: 1, lg: 1.5 },
+    transition: "color 0.3s ease, transform 0.3s ease",
     "&:hover": {
-      transform: "translateY(-5px)", // move up by 2px
+      color: "#D6AD60",
+      transform: "translateY(-2px)",
     },
   },
   hamburger: {
@@ -121,6 +148,7 @@ const styles = {
     width: 250,
     bgcolor: "#F4EBD0", // light background
     height: "100%",
+    pt: 3,
   },
   drawerListItem: {
     color: "#111", // dark text visible on light drawer

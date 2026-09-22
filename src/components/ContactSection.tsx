@@ -28,6 +28,7 @@ export const ContactSection: React.FC = () => {
       {/* Left (Map) */}
       <Box
         component="iframe"
+        title="Map showing Manila, Philippines"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.555895171646!2d121.01534577474087!3d14.681126575100839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b6cedde3bd75%3A0xd0c9f35055df35da!2sThe%20Avenue%20Residences!5e0!3m2!1sen!2sph!4v1762782432087!5m2!1sen!2sph"
         loading="lazy"
         allowFullScreen
@@ -35,8 +36,17 @@ export const ContactSection: React.FC = () => {
       />
 
       {/* Right (Text + Form) */}
-      <Box sx={styles.textContainer}>
-        <Typography variant="h3" sx={styles.heading}>
+      <Box
+        component="section"
+        aria-labelledby="contact-heading"
+        sx={styles.textContainer}
+      >
+        <Typography
+          id="contact-heading"
+          component="h2"
+          variant="h3"
+          sx={styles.heading}
+        >
           Get In{" "}
           <Box component="span" sx={styles.highlight}>
             Touch
@@ -129,27 +139,30 @@ const styles = {
     flexDirection: { xs: "column", md: "row" },
     alignItems: "center",
     justifyContent: "center",
-    py: 10,
-    gap: 10,
-    px: { xs: 3, sm: 6, md: 10 },
+    py: { xs: 8, sm: 10, md: 12 },
+    gap: { xs: 5, md: 8, lg: 10 },
+    px: { xs: 2, sm: 4, md: 7 },
+    backgroundImage: "linear-gradient(135deg, #122620 0%, #19382f 100%)",
   },
   map: {
     flex: 1,
-    width: { xs: "auto", md: "auto" },
-    height: { xs: 300, md: 400 },
+    width: "100%",
+    maxWidth: { xs: "100%", md: 560 },
+    height: { xs: 260, sm: 320, md: 430 },
     border: 0,
-    borderRadius: "20px",
+    borderRadius: { xs: 2, md: 3 },
     boxShadow: "0 4px 15px rgba(0,0,0,0.4)",
   },
   textContainer: {
     flex: 1,
-    maxWidth: 500,
+    width: "100%",
+    maxWidth: 560,
     textAlign: { xs: "center", md: "left" },
   },
   heading: {
     fontWeight: "bold",
-    mb: 3,
-    fontSize: { xs: "2.5rem", md: "3.5rem" },
+    mb: { xs: 1.5, md: 2.5 },
+    fontSize: { xs: "2rem", sm: "2.5rem", md: "3.5rem" },
     color: "#D6AD60",
   },
   highlight: {
@@ -157,8 +170,9 @@ const styles = {
   },
   subtitle: {
     color: "#BEBEBE",
-    mb: 4,
-    fontSize: { xs: "1.1rem", md: "1.25rem" },
+    mb: { xs: 3, md: 4 },
+    fontSize: { xs: "0.95rem", sm: "1.05rem", md: "1.2rem" },
+    lineHeight: 1.7,
   },
   infoBox: {
     mb: 3,
@@ -192,8 +206,8 @@ const styles = {
     flexDirection: "column",
     gap: 3,
     bgcolor: "#1E3D34",
-    p: { xs: 3, md: 4 },
-    borderRadius: "16px",
+    p: { xs: 2, sm: 3, md: 4 },
+    borderRadius: { xs: 2, md: 3 },
     boxShadow: "0 4px 15px rgba(0,0,0,0.4)",
   },
   textField: {
@@ -205,9 +219,10 @@ const styles = {
     "& .MuiInputLabel-root": { color: "#BEBEBE" },
   },
   button: {
-    bgcolor: "#B68D40",
+    bgcolor: "#D6AD60",
     color: "#122620",
     fontWeight: "bold",
+    minHeight: 44,
     "&:hover": {
       bgcolor: "#D6AD60",
     },

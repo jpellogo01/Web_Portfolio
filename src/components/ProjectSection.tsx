@@ -3,6 +3,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  demoUrl: string;
+  githubUrl: string;
+}
 import project1Image from "../assets/otpAPI.png";
 import project2Image from "../assets/dlsauWebtube.png";
 import project3Image from "../assets/biometricAttendance.png";
@@ -10,7 +20,7 @@ import project4Image from "../assets/project4.png";
 import springbootRestApiImage from "../assets/springbootRestApi.png";
 import animo from "../assets/animo.png";
 
-const projects = [
+const projects: Project[] = [
   {
     id: 1,
     title: "OTP Verification System",
@@ -93,7 +103,7 @@ export const ProjectsSection: React.FC = () => {
 
       <Box sx={styles.grid}>
         {projects.map((project) => (
-          <Box key={project.id} sx={styles.card}>
+          <Box key={project.id} component="article" sx={styles.card}>
             <Box
               component="img"
               src={project.image}
@@ -110,7 +120,9 @@ export const ProjectsSection: React.FC = () => {
                 ))}
               </Box>
 
-              <Typography sx={styles.projectTitle}>{project.title}</Typography>
+              <Typography component="h4" sx={styles.projectTitle}>
+                {project.title}
+              </Typography>
               <Typography sx={styles.projectDesc}>
                 {project.description}
               </Typography>
@@ -118,7 +130,9 @@ export const ProjectsSection: React.FC = () => {
               <Box sx={styles.links}>
                 <Button
                   href={project.demoUrl}
-                  target="_blank"
+                  target={project.demoUrl === "#" ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                  aria-label={`Open live demo for ${project.title}`}
                   sx={styles.iconBtn}
                 >
                   <ExternalLink size={20} />
@@ -126,6 +140,8 @@ export const ProjectsSection: React.FC = () => {
                 <Button
                   href={project.githubUrl}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open source code for ${project.title}`}
                   sx={styles.iconBtn}
                 >
                   <Github size={20} />
@@ -153,14 +169,15 @@ export const ProjectsSection: React.FC = () => {
 // ------------------ Styles ------------------
 const styles = {
   container: {
-    py: 12,
-    px: { xs: 3, md: 6 },
+    py: { xs: 8, sm: 10, md: 12 },
+    px: { xs: 2, sm: 4, md: 7 },
     bgcolor: "#122620",
     color: "#E5E5E5",
   },
   title: {
     fontWeight: "bold",
-    mb: 2,
+    mb: { xs: 1.5, md: 2 },
+    fontSize: { xs: "2rem", sm: "2.5rem", md: "3.2rem" },
     textAlign: "center",
   },
   highlight: {
@@ -168,14 +185,15 @@ const styles = {
   },
   subtitle: {
     textAlign: "center",
-    mb: 10,
-    color: "#B68D40",
+    mb: { xs: 5, md: 8 },
+    color: "#BEBEBE",
     maxWidth: 600,
     mx: "auto",
+    lineHeight: 1.7,
   },
   grid: {
     display: "grid",
-    gap: 4,
+    gap: { xs: 2.5, md: 3 },
     gridTemplateColumns: {
       xs: "1fr",
       md: "repeat(2,1fr)",
@@ -183,22 +201,31 @@ const styles = {
     },
   },
   card: {
-    bgcolor: "#122620",
-    border: "1px solid #B68D40",
-    borderRadius: 3,
+    bgcolor: "#1E3D34",
+    border: "1px solid rgba(214, 173, 96, 0.28)",
+    borderRadius: 2,
     overflow: "hidden",
     boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-    transition: "transform 0.3s ease",
-    "&:hover": { transform: "translateY(-4px)" },
+    display: "flex",
+    flexDirection: "column",
+    transition: "transform 0.3s ease, border-color 0.3s ease",
+    "@media (hover: hover) and (pointer: fine)": {
+      "&:hover": { transform: "translateY(-5px)", borderColor: "#D6AD60" },
+    },
   },
   image: {
     width: "100%",
-    height: 200,
+    height: { xs: 190, sm: 220, md: 205 },
     objectFit: "cover",
     transition: "transform 0.5s",
     "&:hover": { transform: "scale(1.05)" },
   },
-  cardContent: { p: 3 },
+  cardContent: {
+    p: { xs: 2, sm: 2.5, md: 3 },
+    display: "flex",
+    flexDirection: "column",
+    flex: 1,
+  },
   tags: { display: "flex", flexWrap: "wrap", gap: 1, mb: 2 },
   tag: {
     px: 2,
@@ -209,16 +236,21 @@ const styles = {
     fontSize: "0.75rem",
     fontWeight: 500,
   },
-  projectTitle: { fontWeight: "bold", fontSize: "1.2rem", mb: 1 },
-  projectDesc: { color: "#B68D40", fontSize: "0.875rem", mb: 2 },
+  projectTitle: {
+    fontWeight: "bold",
+    fontSize: { xs: "1.1rem", md: "1.2rem" },
+    mb: 1,
+  },
+  projectDesc: { color: "#BEBEBE", fontSize: "0.9rem", lineHeight: 1.6, mb: 2 },
   links: { display: "flex", gap: 2 },
   iconBtn: {
-    minWidth: 0,
-    p: 0,
+    minWidth: 44,
+    minHeight: 44,
+    p: 1,
     color: "#E5E5E5",
     "&:hover": { color: "#D6AD60" },
   },
-  cta: { textAlign: "center", mt: 8 },
+  cta: { textAlign: "center", mt: { xs: 5, md: 8 } },
   ctaBtn: {
     bgcolor: "#D6AD60",
     color: "#1A202C",
